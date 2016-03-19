@@ -1,0 +1,4 @@
+name: DiscordBot
+version: 1.0.0
+author: Bastian
+main: de.btobastian.javacordbot.JavacordBot
