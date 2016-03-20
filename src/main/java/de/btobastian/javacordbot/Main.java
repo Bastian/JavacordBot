@@ -72,6 +72,7 @@ public class Main implements FutureCallback<DiscordAPI> {
         commandHandler.registerCommand(new InfoCommand());
         commandHandler.registerCommand(new TranslateCommand());
         commandHandler.registerCommand(new ExecuteCommand());
+        commandHandler.registerCommand(new DeleteCommand());
     }
 
     /**
