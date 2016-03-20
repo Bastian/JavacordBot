@@ -50,7 +50,8 @@ public class MessageListener implements MessageCreateListener {
         if (!message.isPrivateMessage()
                 && !message.getChannelReceiver().getName().equals("cleverbot")
                 && !message.getChannelReceiver().getName().equals("german_cleverbot")
-                && !message.getContent().startsWith("+cleverbot ")) {
+                && !message.getContent().startsWith("+cleverbot ")
+                && !message.getAuthor().isYourself()) {
             return; // no valid cleverbot channel
         }
         // the question
