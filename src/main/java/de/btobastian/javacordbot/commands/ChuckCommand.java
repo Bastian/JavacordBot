@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2016 Bastian Oppermann
- *
+ * 
  * This file is part of my Javacord Discord bot.
  *
  * This bot is free software; you can redistribute it and/or modify
@@ -18,20 +18,33 @@
  */
 package de.btobastian.javacordbot.commands;
 
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
+import de.btobastian.javacord.entities.message.MessageBuilder;
+import de.btobastian.javacord.entities.message.MessageDecoration;
 import de.btobastian.javacordbot.util.commands.Command;
 import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 /**
- * A simple ping command.
+ * The chuck command.
  */
-public class PingCommand implements CommandExecutor {
+public class ChuckCommand implements CommandExecutor {
 
     @Override
-    @Command(privateMessages = true, description = "Pong!", aliases = {"ping"}, showInHelpPage = false)
+    @Command(aliases = {"chuck", "joke"}, description = "Tells a Chuck Norris joke", privateMessages = true)
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
-        return "Pong!";
+        JSONObject jsonResponse;
+        try {
+            jsonResponse = Unirest.get("http://api.icndb.com/jokes/random").asJson().getBody().getObject();
+        } catch (UnirestException e) {
+            return "Error:" + e.getMessage();
+        }
+        String joke = jsonResponse.getJSONObject("value").getString("joke").replace("&quot;", "\"");
+        Jsoup.parse(joke).text();
+        return new MessageBuilder().appendDecoration(MessageDecoration.CODE_LONG, joke).toString();
     }
-
 }
