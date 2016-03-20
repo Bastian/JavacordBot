@@ -10,17 +10,17 @@
 
     <repositories>
         <repository>
-            <id>javacord</id>
-            <url>http://repo.bastian-oppermann.de</url>
+            <id>javacord-testrepo</id>
+            <url>http://testrepo.bastian-oppermann.de</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Javacord  -->
+        <!-- Javacord -->
         <dependency>
             <groupId>de.btobastian.javacord</groupId>
             <artifactId>javacord</artifactId>
-            <version>2.0.9</version>
+            <version>2.0.9-10</version>
             <classifier>shaded</classifier>
         </dependency>
         <!-- Spigot -->
@@ -28,6 +28,12 @@
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.8-R0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- Javassist -->
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.1-GA</version>
         </dependency>
     </dependencies>
 
@@ -49,6 +55,7 @@
                             <artifactSet>
                                 <includes>
                                     <include>de.btobastian.javacord:javacord</include>
+                                    <include>org.javassist:javassist</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
