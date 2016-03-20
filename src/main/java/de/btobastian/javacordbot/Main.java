@@ -22,10 +22,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.utils.LoggerUtil;
-import de.btobastian.javacordbot.commands.ChuckCommand;
-import de.btobastian.javacordbot.commands.DownloadAvatarCommand;
-import de.btobastian.javacordbot.commands.HelpCommand;
-import de.btobastian.javacordbot.commands.PingCommand;
+import de.btobastian.javacordbot.commands.*;
 import de.btobastian.javacordbot.util.commands.CommandHandler;
 import org.slf4j.Logger;
 
@@ -71,6 +68,7 @@ public class Main implements FutureCallback<DiscordAPI> {
         commandHandler.registerCommand(new PingCommand());
         commandHandler.registerCommand(new DownloadAvatarCommand());
         commandHandler.registerCommand(new ChuckCommand());
+        commandHandler.registerCommand(new ReconnectCommand());
     }
 
     /**
