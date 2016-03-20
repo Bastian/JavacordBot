@@ -25,6 +25,9 @@ import de.btobastian.javacordbot.util.commands.Command;
 import de.btobastian.javacordbot.util.commands.CommandExecutor;
 import org.slf4j.Logger;
 
+/**
+ * The reconnect command.
+ */
 public class ReconnectCommand implements CommandExecutor {
 
     /**

@@ -28,6 +28,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * The download avatar command.
+ */
 public class DownloadAvatarCommand implements CommandExecutor {
 
     @Override
