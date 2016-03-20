@@ -42,17 +42,19 @@ public class MessageListener implements MessageCreateListener {
 
     @Override
     public void onMessageCreate(DiscordAPI api, Message message) {
+        if (message.getAuthor().isYourself()) {
+            return;
+        }
         // the bot is sometimes pretty slow. We don't want it to block our listener thread
         api.getThreadPool().getExecutorService().submit((Runnable) () -> handleCleverbot(api, message));
     }
 
     private void handleCleverbot(DiscordAPI api, Message message) {
-        if (!message.isPrivateMessage()
-                && !message.getChannelReceiver().getName().equals("cleverbot")
-                && !message.getChannelReceiver().getName().equals("german_cleverbot")
-                && !message.getContent().startsWith("+cleverbot ")
-                && !message.getAuthor().isYourself()) {
-            return; // no valid cleverbot channel
+        if (!(message.isPrivateMessage() ||
+                message.getChannelReceiver().getName().equals("cleverbot") ||
+                message.getChannelReceiver().getName().equals("german_cleverbot") ||
+                message.getContent().startsWith("+cleverbot "))) {
+            return;
         }
         // the question
         String question = message.getContent();
