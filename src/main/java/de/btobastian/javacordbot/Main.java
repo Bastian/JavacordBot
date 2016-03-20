@@ -23,6 +23,7 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.utils.LoggerUtil;
 import de.btobastian.javacordbot.commands.*;
+import de.btobastian.javacordbot.listeners.MessageListener;
 import de.btobastian.javacordbot.util.commands.CommandHandler;
 import org.slf4j.Logger;
 
@@ -61,7 +62,10 @@ public class Main implements FutureCallback<DiscordAPI> {
     public void onSuccess(DiscordAPI api) {
         logger.info("Connected to discord account {}", api.getYourself());
         CommandHandler commandHandler = new CommandHandler(adminId);
+        // register the command handler
         api.registerListener(commandHandler);
+        // the message listener for cleverbot
+        api.registerListener(new MessageListener());
 
         // register commands
         commandHandler.registerCommand(new HelpCommand(commandHandler));
