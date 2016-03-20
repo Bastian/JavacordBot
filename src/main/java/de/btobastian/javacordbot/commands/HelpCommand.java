@@ -57,6 +57,9 @@ public class HelpCommand implements CommandExecutor {
                     .append(simpleCommand.getUsage())
                     .append(" | ")
                     .append(simpleCommand.getDescription());
+            if (simpleCommand.isAdminOnly()) {
+                messageBuilder.append(" (admin-only)");
+            }
         }
         messageBuilder.appendNewLine().append(MessageDecoration.CODE_LONG.getSuffix());
         return messageBuilder.toString();

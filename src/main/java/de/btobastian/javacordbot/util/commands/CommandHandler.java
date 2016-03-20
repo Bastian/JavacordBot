@@ -72,6 +72,7 @@ public class CommandHandler implements MessageCreateListener {
             return;
         }
         if (command.isAdminOnly() && !message.getAuthor().getId().equals(adminId)) {
+            message.reply("You are not allowed to use this command!");
             return;
         }
         String[] args = Arrays.copyOfRange(splitMessage, 1, splitMessage.length);
