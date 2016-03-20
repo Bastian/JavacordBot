@@ -46,7 +46,7 @@ public class ExecuteCommand implements CommandExecutor {
      * IMPORTANT: This code is fucking ugly. You shouldn't copy it!
      */
     @Override
-    @Command(aliases = {"execute", "eval"}, description = "Runs java code", usage = "execute <code>")
+    @Command(aliases = {"execute", "eval"}, description = "Executes java code", usage = "execute <code>", adminOnly = true)
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         final Thread[] executionThread = new Thread[1];
         Future<String> future = api.getThreadPool().getExecutorService().submit(() -> {

@@ -58,7 +58,7 @@ public class UptimeTest implements CommandExecutor {
         }
         return "Added channel to uptime test!\n" +
                 "Every 12 hours the current uptime will be posted in this channel.\n" +
-                "This test is for the new websocket javacord used.\n" +
+                "This is to test the stability of the new websocket javacord uses.\n" +
                 "It's only for one session!";
     }
 

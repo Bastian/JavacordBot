@@ -37,7 +37,7 @@ public class JavacordBot extends JavaPlugin {
         if (!getConfig().contains("token")) {
             getConfig().addDefault("token", "your bot`s token");
             getConfig().addDefault("adminId", "your id");
-            saveDefaultConfig();
+            saveConfig();
             logger.info("Created config.yml file. Please enter a valid token and restart the server!");
             getPluginLoader().disablePlugin(this);
             return;
