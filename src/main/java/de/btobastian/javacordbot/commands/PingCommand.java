@@ -20,17 +20,13 @@ package de.btobastian.javacordbot.commands;
 
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
-import de.btobastian.javacord.utils.LoggerUtil;
 import de.btobastian.javacordbot.util.commands.Command;
 import de.btobastian.javacordbot.util.commands.CommandExecutor;
-import org.slf4j.Logger;
 
+/**
+ * A simple ping command.
+ */
 public class PingCommand implements CommandExecutor {
-
-    /**
-     * The logger of this class.
-     */
-    private static final Logger logger = LoggerUtil.getLogger(PingCommand.class);
 
     @Override
     @Command(privateMessages = true, channelMessages = false, description = "Pong!", aliases = {"ping"})
