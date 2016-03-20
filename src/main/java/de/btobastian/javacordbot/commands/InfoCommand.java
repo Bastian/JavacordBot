@@ -45,6 +45,7 @@ public class InfoCommand implements CommandExecutor {
         appendAuthor(msgBuilder, message);
         msgBuilder
                 .appendNewLine().append("• Library: Javacord")
+                .appendNewLine().append("• GitHub: <https://github.com/BtoBastian/JavacordBot>")
                 .appendNewLine().append("• Servers: " + api.getServers().size());
         appendUsers(msgBuilder, api);
         appendUptime(msgBuilder);
