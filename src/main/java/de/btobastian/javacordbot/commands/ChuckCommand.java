@@ -35,7 +35,7 @@ import org.jsoup.Jsoup;
 public class ChuckCommand implements CommandExecutor {
 
     @Override
-    @Command(aliases = {"chuck", "joke"}, description = "Tells a Chuck Norris joke", privateMessages = true)
+    @Command(aliases = {"chuck", "joke"}, description = "Tells a Chuck Norris joke")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         JSONObject jsonResponse;
         try {

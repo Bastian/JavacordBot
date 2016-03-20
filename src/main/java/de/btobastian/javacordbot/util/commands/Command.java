@@ -32,7 +32,7 @@ public @interface Command {
      *
      * @return Whether the executor should listen to private messages or not.
      */
-    boolean privateMessages() default false;
+    boolean privateMessages() default true;
 
     /**
      * Gets whether the executor should listen to channel messages or not.

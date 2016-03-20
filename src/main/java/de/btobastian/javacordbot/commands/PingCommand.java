@@ -29,7 +29,7 @@ import de.btobastian.javacordbot.util.commands.CommandExecutor;
 public class PingCommand implements CommandExecutor {
 
     @Override
-    @Command(privateMessages = true, description = "Pong!", aliases = {"ping"}, showInHelpPage = false)
+    @Command(description = "Pong!", aliases = {"ping"}, showInHelpPage = false)
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         return "Pong!";
     }

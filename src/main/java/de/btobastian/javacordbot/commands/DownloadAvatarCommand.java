@@ -31,8 +31,7 @@ import java.io.IOException;
 public class DownloadAvatarCommand implements CommandExecutor {
 
     @Override
-    @Command(privateMessages = true, description = "Downloads the avatar of the user!",
-            aliases = {"downloadAvatar"}, usage = "downloadAvatar <@user>")
+    @Command(aliases = {"downloadAvatar"}, description = "Downloads the avatar of the user!", usage = "downloadAvatar <@user>")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         if (args.length != 1 || message.getMentions().size() != 1) {
             return "The first argument must be a user!";
