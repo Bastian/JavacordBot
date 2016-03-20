@@ -35,7 +35,7 @@ public class InfoCommand implements CommandExecutor {
 
     private static final String BASTIAN_ID = "157862224206102529";
 
-    private long startTime = System.currentTimeMillis();
+    private final long startTime = System.currentTimeMillis();
 
     @Override
     @Command(aliases = {"info"}, description = "Shows information about the bot")
