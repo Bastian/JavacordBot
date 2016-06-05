@@ -23,8 +23,8 @@ import de.btobastian.javacord.entities.Server;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import de.btobastian.javacord.entities.message.MessageDecoration;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 
 import java.util.concurrent.TimeUnit;
 
@@ -37,8 +37,7 @@ public class InfoCommand implements CommandExecutor {
 
     private final long startTime = System.currentTimeMillis();
 
-    @Override
-    @Command(aliases = {"info"}, description = "Shows information about the bot")
+    @Command(aliases = {"+info"}, description = "Shows information about the bot")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         MessageBuilder msgBuilder = new MessageBuilder();
         msgBuilder.appendDecoration(MessageDecoration.BOLD, "General information");

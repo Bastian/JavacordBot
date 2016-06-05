@@ -27,8 +27,8 @@ import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import de.btobastian.javacord.entities.message.MessageDecoration;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import javassist.*;
 
 import java.lang.reflect.Method;
@@ -45,8 +45,7 @@ public class ExecuteCommand implements CommandExecutor {
     /*
      * IMPORTANT: This code is fucking ugly. You shouldn't copy it!
      */
-    @Override
-    @Command(aliases = {"execute", "eval"}, description = "Executes java code", usage = "execute <code>", adminOnly = true)
+    @Command(aliases = {"+execute", "+eval"}, description = "Executes java code", usage = "+execute <code>", requiredPermissions = "execute")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         final Thread[] executionThread = new Thread[1];
         Future<String> future = api.getThreadPool().getExecutorService().submit(() -> {

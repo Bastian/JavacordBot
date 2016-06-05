@@ -21,8 +21,8 @@ package de.btobastian.javacordbot.commands;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.utils.LoggerUtil;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.slf4j.Logger;
 
 /**
@@ -35,8 +35,7 @@ public class ReconnectCommand implements CommandExecutor {
      */
     private static final Logger logger = LoggerUtil.getLogger(ReconnectCommand.class);
 
-    @Override
-    @Command(aliases = {"reconnect"}, description = "Reconnects to the websocket", adminOnly = true)
+    @Command(aliases = {"+reconnect"}, description = "Reconnects to the websocket", requiredPermissions = "+reconnect")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         try {
             api.reconnectBlocking();

@@ -24,8 +24,8 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import de.btobastian.javacord.entities.message.MessageDecoration;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 
@@ -34,8 +34,7 @@ import org.jsoup.Jsoup;
  */
 public class ChuckCommand implements CommandExecutor {
 
-    @Override
-    @Command(aliases = {"chuck", "joke"}, description = "Tells a Chuck Norris joke")
+    @Command(aliases = {"+chuck", "+joke"}, description = "Tells a Chuck Norris joke")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         JSONObject jsonResponse;
         try {

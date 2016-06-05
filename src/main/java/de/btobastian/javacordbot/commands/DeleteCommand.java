@@ -23,17 +23,16 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.message.MessageHistory;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 
 /**
  * The delete command.
  */
 public class DeleteCommand implements CommandExecutor {
 
-    @Override
-    @Command(aliases = {"delete", "del"}, description = "Deletes the last <amount> messages of [@user]",
-            usage = "delete <amount> [@user]", adminOnly = true)
+    @Command(aliases = {"+delete", "+del"}, description = "Deletes the last <amount> messages of [@user]",
+            usage = "delete <amount> [@user]", requiredPermissions = "delete")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         if (args.length != 1 && message.getMentions().size() == 0
                 || args.length != 2 && message.getMentions().size() == 1) {

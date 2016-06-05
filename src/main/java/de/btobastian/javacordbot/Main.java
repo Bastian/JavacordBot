@@ -23,8 +23,8 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.utils.LoggerUtil;
 import de.btobastian.javacordbot.commands.*;
-import de.btobastian.javacordbot.listeners.MessageListener;
-import de.btobastian.javacordbot.util.commands.CommandHandler;
+import de.btobastian.sdcf4j.CommandHandler;
+import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.slf4j.Logger;
 
 /**
@@ -60,24 +60,22 @@ public class Main implements FutureCallback<DiscordAPI> {
      */
     @Override
     public void onSuccess(DiscordAPI api) {
+        logger.info("Amount of servers: {}", api.getServers().size());
         logger.info("Connected to discord account {}", api.getYourself());
-        CommandHandler commandHandler = new CommandHandler(adminId);
-        // register the command handler
-        api.registerListener(commandHandler);
-        // the message listener for cleverbot
-        api.registerListener(new MessageListener());
+        CommandHandler handler = new JavacordHandler(api);
+        handler.addPermission(adminId, "*");
 
         // register commands
-        commandHandler.registerCommand(new HelpCommand(commandHandler));
-        commandHandler.registerCommand(new PingCommand());
-        commandHandler.registerCommand(new DownloadAvatarCommand());
-        commandHandler.registerCommand(new ChuckCommand());
-        commandHandler.registerCommand(new ReconnectCommand());
-        commandHandler.registerCommand(new InfoCommand());
-        commandHandler.registerCommand(new TranslateCommand());
-        commandHandler.registerCommand(new ExecuteCommand());
-        commandHandler.registerCommand(new DeleteCommand());
-        commandHandler.registerCommand(new UptimeTest());
+        handler.registerCommand(new HelpCommand(handler));
+        handler.registerCommand(new ExecuteCommand());
+        handler.registerCommand(new TodoCommand());
+        handler.registerCommand(new DownloadAvatarCommand());
+        handler.registerCommand(new ChuckCommand());
+        handler.registerCommand(new ReconnectCommand());
+        handler.registerCommand(new TranslateCommand());
+        handler.registerCommand(new DeleteCommand());
+        handler.registerCommand(new InfoCommand());
+
     }
 
     /**

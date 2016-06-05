@@ -21,20 +21,17 @@ package de.btobastian.javacordbot.commands;
 import com.google.common.util.concurrent.FutureCallback;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
 
 /**
  * The download avatar command.
  */
 public class DownloadAvatarCommand implements CommandExecutor {
 
-    @Override
-    @Command(aliases = {"downloadAvatar"}, description = "Downloads the avatar of the user!", usage = "downloadAvatar <@user>")
+    @Command(aliases = {"+downloadAvatar"}, description = "Downloads the avatar of the user!", usage = "+downloadAvatar <@user>")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         if (args.length != 1 || message.getMentions().size() != 1) {
             return "The first argument must be a user!";
@@ -43,15 +40,18 @@ public class DownloadAvatarCommand implements CommandExecutor {
             @Override
             public void onSuccess(byte[] bytes) {
                 try {
-                    new File("discord" + File.separator + "avatars").mkdirs();
-                    File file = new File("discord" + File.separator + "avatars" + File.separator +
-                            message.getMentions().get(0).getName() + ".jpg");
-                    file.createNewFile();
-                    FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
-                    fos.write(bytes);
-                    fos.close();
-                    message.replyFile(file);
-                } catch (IOException e) {
+                    message.replyFile(new ByteArrayInputStream(bytes), "avatar.jpg", "Avatar:", new FutureCallback<Message>() {
+                        @Override
+                        public void onSuccess(Message message) {
+
+                        }
+
+                        @Override
+                        public void onFailure(Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
+                    });
+                } catch (Exception e) {
                     message.reply("Error: " + e.getMessage());
                 }
             }

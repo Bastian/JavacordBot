@@ -18,13 +18,9 @@
  */
 package de.btobastian.javacordbot.commands;
 
-import de.btobastian.javacord.DiscordAPI;
-import de.btobastian.javacord.entities.message.Message;
-import de.btobastian.javacord.entities.message.MessageBuilder;
-import de.btobastian.javacord.entities.message.MessageDecoration;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
-import de.btobastian.javacordbot.util.commands.CommandHandler;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
+import de.btobastian.sdcf4j.CommandHandler;
 
 /**
  * The help command.
@@ -42,26 +38,31 @@ public class HelpCommand implements CommandExecutor {
         this.commandHandler = commandHandler;
     }
 
-    @Override
-    @Command(aliases = {"help", "commands"}, description = "Shows this page")
-    public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
-        MessageBuilder messageBuilder = new MessageBuilder();
-        messageBuilder.append(MessageDecoration.CODE_LONG.getPrefix()).append("xml");
+    @Command(aliases = {"+help", "+commands"}, description = "Shows this page")
+    public String onHelpCommand() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("```xml"); // a xml code block looks fancy
         for (CommandHandler.SimpleCommand simpleCommand : commandHandler.getCommands()) {
-            if (!simpleCommand.isShowInHelpPage()) {
-                continue;
+            if (!simpleCommand.getCommandAnnotation().showInHelpPage()) {
+                continue; // skip command
             }
-            messageBuilder
-                    .appendNewLine()
-                    .append(simpleCommand.getCommandPrefix())
-                    .append(simpleCommand.getUsage())
-                    .append(" | ")
-                    .append(simpleCommand.getDescription());
-            if (simpleCommand.isAdminOnly()) {
-                messageBuilder.append(" (admin-only)");
+            builder.append("\n");
+            if (!simpleCommand.getCommandAnnotation().requiresMention()) {
+                // the default prefix only works if the command does not require a mention
+                builder.append(commandHandler.getDefaultPrefix());
+            }
+            String usage = simpleCommand.getCommandAnnotation().usage();
+            if (usage.isEmpty()) { // no usage provided, using the first alias
+                usage = simpleCommand.getCommandAnnotation().aliases()[0];
+            }
+            builder.append(usage);
+            String description = simpleCommand.getCommandAnnotation().description();
+            if (description != null) {
+                builder.append(" | ").append(description);
             }
         }
-        messageBuilder.appendNewLine().append(MessageDecoration.CODE_LONG.getSuffix());
-        return messageBuilder.toString();
+        builder.append("\n```"); // end of xml code block
+        return builder.toString();
     }
+
 }

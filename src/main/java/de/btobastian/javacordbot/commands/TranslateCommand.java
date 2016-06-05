@@ -25,8 +25,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.message.Message;
-import de.btobastian.javacordbot.util.commands.Command;
-import de.btobastian.javacordbot.util.commands.CommandExecutor;
+import de.btobastian.sdcf4j.Command;
+import de.btobastian.sdcf4j.CommandExecutor;
 
 import java.util.Arrays;
 
@@ -35,8 +35,7 @@ import java.util.Arrays;
  */
 public class TranslateCommand implements CommandExecutor {
 
-    @Override
-    @Command(aliases = {"translate"}, description = "Translates the given text", usage = "translate <from> <to> <text>")
+    @Command(aliases = {"+translate"}, description = "Translates the given text", usage = "+translate <from> <to> <text>")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         if (args.length < 3) {
             return "Too less arguments!";
