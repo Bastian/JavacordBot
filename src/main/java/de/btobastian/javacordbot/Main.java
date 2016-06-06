@@ -23,6 +23,7 @@ import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.utils.LoggerUtil;
 import de.btobastian.javacordbot.commands.*;
+import de.btobastian.javacordbot.listeners.MessageListener;
 import de.btobastian.sdcf4j.CommandHandler;
 import de.btobastian.sdcf4j.handler.JavacordHandler;
 import org.slf4j.Logger;
@@ -76,6 +77,7 @@ public class Main implements FutureCallback<DiscordAPI> {
         handler.registerCommand(new DeleteCommand());
         handler.registerCommand(new InfoCommand());
 
+        api.registerListener(new MessageListener());
     }
 
     /**

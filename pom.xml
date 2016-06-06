@@ -43,7 +43,7 @@
         <dependency>
             <groupId>ca.pjer</groupId>
             <artifactId>chatter-bot-api</artifactId>
-            <version>1.3.3</version>
+            <version>1.4.2</version>
         </dependency>
         <!-- Logging framework -->
         <dependency>
