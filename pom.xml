@@ -84,8 +84,8 @@
                                     <include>de.btobastian.javacord:javacord</include>
                                     <include>org.javassist:javassist</include>
                                     <include>ca.pjer:chatter-bot-api</include>
-                                    <include>de.btobastian.javacord:sdcf4j-core</include>
-                                    <include>de.btobastian.javacord:sdcf4j-javacord</include>
+                                    <include>de.btobastian.sdcf4j:sdcf4j-core</include>
+                                    <include>de.btobastian.sdcf4j:sdcf4j-javacord</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
