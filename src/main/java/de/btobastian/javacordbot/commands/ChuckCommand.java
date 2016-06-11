@@ -44,6 +44,6 @@ public class ChuckCommand implements CommandExecutor {
         }
         String joke = jsonResponse.getJSONObject("value").getString("joke").replace("&quot;", "\"");
         Jsoup.parse(joke).text();
-        return new MessageBuilder().appendDecoration(MessageDecoration.CODE_LONG, joke).toString();
+        return new MessageBuilder().appendDecoration(joke, MessageDecoration.CODE_LONG).toString();
     }
 }
