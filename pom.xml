@@ -51,6 +51,12 @@
             <artifactId>logback-classic</artifactId>
             <version>1.0.13</version>
         </dependency>
+        <!-- Jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.8.1</version>
+        </dependency>
         <!-- Command lib -->
         <dependency>
             <groupId>de.btobastian.sdcf4j</groupId>
