@@ -32,7 +32,7 @@ import de.btobastian.sdcf4j.CommandExecutor;
 public class DeleteCommand implements CommandExecutor {
 
     @Command(aliases = {"+delete", "+del"}, description = "Deletes the last <amount> messages of [@user]",
-            usage = "delete <amount> [@user]", requiredPermissions = "delete")
+            usage = "+delete <amount> [@user]", requiredPermissions = "delete")
     public String onCommand(DiscordAPI api, String command, String[] args, Message message) {
         if (args.length != 1 && message.getMentions().size() == 0
                 || args.length != 2 && message.getMentions().size() == 1) {
