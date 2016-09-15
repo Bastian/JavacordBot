@@ -13,6 +13,10 @@
             <id>javacord-repo</id>
             <url>http://repo.bastian-oppermann.de</url>
         </repository>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
