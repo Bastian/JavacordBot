@@ -46,7 +46,7 @@ public class MessageListener implements MessageCreateListener {
             return;
         }
         // the bot is sometimes pretty slow. We don't want it to block our listener thread
-        api.getThreadPool().getExecutorService().submit((Runnable) () -> handleCleverbot(api, message));
+        api.getThreadPool().getExecutorService().submit(() -> handleCleverbot(api, message));
     }
 
     private void handleCleverbot(DiscordAPI api, Message message) {

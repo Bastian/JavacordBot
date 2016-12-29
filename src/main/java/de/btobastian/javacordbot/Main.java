@@ -20,7 +20,10 @@ package de.btobastian.javacordbot;
 
 import com.google.common.util.concurrent.FutureCallback;
 import de.btobastian.javacord.DiscordAPI;
+import de.btobastian.javacord.ImplDiscordAPI;
 import de.btobastian.javacord.Javacord;
+import de.btobastian.javacord.entities.CustomEmoji;
+import de.btobastian.javacord.entities.Server;
 import de.btobastian.javacord.utils.LoggerUtil;
 import de.btobastian.javacordbot.commands.*;
 import de.btobastian.javacordbot.listeners.MessageListener;
@@ -66,6 +69,8 @@ public class Main implements FutureCallback<DiscordAPI> {
         CommandHandler handler = new JavacordHandler(api);
         handler.addPermission(adminId, "*");
 
+        api.setMessageCacheSize(10000);
+
         // register commands
         handler.registerCommand(new HelpCommand(handler));
         handler.registerCommand(new ExecuteCommand());
@@ -76,6 +81,7 @@ public class Main implements FutureCallback<DiscordAPI> {
         handler.registerCommand(new TranslateCommand());
         handler.registerCommand(new DeleteCommand());
         handler.registerCommand(new InfoCommand());
+        handler.registerCommand(new SpamEmojiCommand());
 
         api.registerListener(new MessageListener());
     }
