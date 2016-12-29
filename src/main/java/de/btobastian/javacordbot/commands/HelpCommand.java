@@ -18,9 +18,13 @@
  */
 package de.btobastian.javacordbot.commands;
 
+import de.btobastian.javacord.entities.message.Message;
+import de.btobastian.javacord.entities.message.embed.EmbedBuilder;
 import de.btobastian.sdcf4j.Command;
 import de.btobastian.sdcf4j.CommandExecutor;
 import de.btobastian.sdcf4j.CommandHandler;
+
+import java.awt.*;
 
 /**
  * The help command.
@@ -39,30 +43,31 @@ public class HelpCommand implements CommandExecutor {
     }
 
     @Command(aliases = {"+help", "+commands"}, description = "Shows this page")
-    public String onHelpCommand() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("```xml"); // a xml code block looks fancy
+    public void onHelpCommand(Message message) {
+        EmbedBuilder embed = new EmbedBuilder();
+        embed.setTitle("=== Commands ===");
+        embed.setFooter("Powered by Javacord");
+        embed.setColor(Color.GREEN);
+
         for (CommandHandler.SimpleCommand simpleCommand : commandHandler.getCommands()) {
             if (!simpleCommand.getCommandAnnotation().showInHelpPage()) {
                 continue; // skip command
             }
-            builder.append("\n");
+            StringBuilder command = new StringBuilder();
             if (!simpleCommand.getCommandAnnotation().requiresMention()) {
                 // the default prefix only works if the command does not require a mention
-                builder.append(commandHandler.getDefaultPrefix());
+                command.append(commandHandler.getDefaultPrefix());
             }
             String usage = simpleCommand.getCommandAnnotation().usage();
             if (usage.isEmpty()) { // no usage provided, using the first alias
                 usage = simpleCommand.getCommandAnnotation().aliases()[0];
             }
-            builder.append(usage);
+            command.append(usage);
             String description = simpleCommand.getCommandAnnotation().description();
-            if (description != null) {
-                builder.append(" | ").append(description);
-            }
+
+            embed.addField(command.toString(), description, false);
         }
-        builder.append("\n```"); // end of xml code block
-        return builder.toString();
+        message.reply("", embed);
     }
 
 }
